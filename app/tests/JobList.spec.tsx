@@ -1,7 +1,7 @@
 import React from "react"
 import { render, act, screen, } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi, } from "vitest"
-import JobList from "../src/JobList"
+import JobList from "../src/job-list/JobList"
 
 
 const mockjobs = [

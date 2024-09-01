@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import JobList from './JobList'
+import JobList from './job-list/JobList'
 import { Job } from './model/Job'
+import { JobProvider } from './job-list/JobProvider'
 
-interface JobProvider {
-  find: () => Promise<Job[]>
-}
 
 interface AppProps {
   provider: JobProvider

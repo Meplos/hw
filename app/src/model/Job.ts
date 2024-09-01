@@ -16,3 +16,4 @@ export interface Job {
 	salary: string
 }
 
+

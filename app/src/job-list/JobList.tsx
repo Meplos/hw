@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Job } from "./model/Job"
+import { Job } from "../model/Job"
 import JobCard from "./JobCard"
 
 

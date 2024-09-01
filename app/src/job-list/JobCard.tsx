@@ -1,5 +1,5 @@
-import { Job } from "./model/Job"
-import Chip from "./Chip"
+import { Job } from "../model/Job"
+import Chip from "../common-components/Chip"
 
 interface JobCardProps {
   job: Job,
