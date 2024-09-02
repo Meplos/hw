@@ -3,6 +3,9 @@ import './App.css'
 import JobList from './job-list/JobList'
 import { Job } from './model/Job'
 import { JobProvider } from './job-list/JobProvider'
+import JobDetail from './JobDetail'
+import Paginator from './Paginator'
+import { useDebounce } from 'use-debounce'
 
 
 interface AppProps {
@@ -12,29 +15,40 @@ interface AppProps {
 function App({ provider }: AppProps) {
   const [jobs, setJobs] = useState<Job[]>([])
   const [active, setActive] = useState<Job>()
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [debouncePage] = useDebounce(currentPage, 200)
+  const [maxPage, setMaxPage] = useState<number>(0)
 
   useEffect(() => {
-    provider.find().then(incomming => {
+    provider.find(debouncePage).then(incomming => {
       setJobs(incomming)
       setActive(incomming[0])
+      setMaxPage(provider.getMaxPage())
     })
-  }, [])
+  }, [debouncePage])
+
+
+  const onPrevious = () => {
+    if (currentPage <= 1) return
+    setCurrentPage((page) => page - 1)
+
+  }
+  const onNext = () => {
+    if (currentPage >= maxPage) return
+    setCurrentPage((page) => page + 1)
+
+  }
 
   return (
-    <div className='flex gap-4 h-screen overflow-hidden'>
-      <JobList items={jobs} className='p-2 overflow-auto' />
-      {active && (
-        <div data-testid="job-detail" className='border-red-500 border-2 m-2 w-9/12'>
-          <h1 className='title'>{active.title}</h1>
-          <span className='salary'>{active.salary}</span>
-          <span className='description'>{active.description}</span>
-          <span className='city'>{active.city}</span>
-          <span className='publicationDate'>{active.publicationDate}</span>
-          <span className='postalCode'>{active.postalCode}</span>
-          <span className='sector'>{active.sector}</span>
-          <span className='company'>{active.company}</span>
-        </div>
-      )}
+    <div className='flex flex-col h-screen justify-center w-full'>
+      <div className='flex gap-4 overflow-hidden'>
+        <JobList items={jobs} className=' w-3/12 p-2 overflow-auto' onJobSelectedCallback={(selected) => { setActive(selected) }} />
+        {active && (
+          <JobDetail job={active} />
+        )}
+      </div>
+      <Paginator current={currentPage} max={maxPage} onNext={onNext} onPrevious={onPrevious} />
+
     </div>
   )
 }

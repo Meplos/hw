@@ -11,13 +11,16 @@
     "test": "vitest"
   },
   "dependencies": {
+    "html-react-parser": "^5.1.15",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "use-debounce": "^10.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
+    "@types/fetch-mock": "^7.3.8",
     "@types/jsdom": "^21.1.7",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -27,6 +30,7 @@
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
+    "fetch-mock": "^11.1.3",
     "globals": "^15.9.0",
     "jsdom": "^25.0.0",
     "postcss": "^8.4.41",

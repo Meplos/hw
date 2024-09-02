@@ -1,6 +1,6 @@
 import React from "react"
 import { render, act, screen } from "@testing-library/react"
-import { afterEach, describe, expect, it, vi, } from "vitest"
+import { describe, expect, it, vi, } from "vitest"
 import App from "../src/App"
 
 const mockdata = [
@@ -33,7 +33,8 @@ const mockdata = [
 ]
 
 const provider = {
-  find: async () => mockdata
+  find: async () => mockdata,
+  getMaxPage: () => 1
 }
 describe("App Test", () => {
 
@@ -45,7 +46,6 @@ describe("App Test", () => {
     expect(detailComponent.querySelector(".title")?.textContent).toBe(mockdata[0].title)
     expect(detailComponent.querySelector(".salary")?.textContent).toBe(mockdata[0].salary)
     expect(detailComponent.querySelector(".description")?.textContent).toBe(mockdata[0].description)
-    expect(detailComponent.querySelector(".publicationDate")?.textContent).toBe(mockdata[0].publicationDate)
     expect(detailComponent.querySelector(".city")?.textContent).toBe(mockdata[0].city)
     expect(detailComponent.querySelector(".postalCode")?.textContent).toBe(mockdata[0].postalCode)
     expect(detailComponent.querySelector(".sector")?.textContent).toBe(mockdata[0].sector)

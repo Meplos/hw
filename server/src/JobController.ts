@@ -1,5 +1,6 @@
 interface JobListResponse {
 	jobs: Job[]
+	total: number
 
 }
 
@@ -34,10 +35,11 @@ export class JobController {
 			const body = await response.json()
 			console.log(body)
 			return {
-				jobs: body.data.ads
+				jobs: body.data.ads,
+				total: body.data.total
 			}
 		} catch {
-			return { jobs: [] }
+			return { jobs: [], total: 0 }
 
 		}
 	}

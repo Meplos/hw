@@ -11,7 +11,6 @@ init()
 
 
 async function init() {
-
 	try {
 		const token = await login()
 		const app = new Koa()
@@ -30,6 +29,20 @@ async function init() {
 			ctx.body = response
 		})
 
+		router.get("/redirect", async (ctx) => {
+
+			const { url } = ctx.request.query
+
+			if (!Array.isArray(url)) {
+				const urlRedirect = new URL(url as string)
+				ctx.status = 301
+				ctx.redirect(urlRedirect.toString())
+				return
+			}
+			ctx.status = 400
+			return
+		})
+
 		app
 			.use(cors())
 			.use(bodyParser())
@@ -44,10 +57,7 @@ async function init() {
 
 }
 
-
 async function login(): Promise<String> {
-	console.log("login", process.env.CLIENT_ID)
-
 	try {
 		const response = await fetch(process.env.API_URL + "login",
 			{
@@ -60,7 +70,6 @@ async function login(): Promise<String> {
 				})
 
 			}
-
 		)
 		const body = await response.json()
 
@@ -70,7 +79,6 @@ async function login(): Promise<String> {
 		console.log("unable to connect to jobijoba")
 		throw new Error("Unable to connect")
 	}
-
 }
 
 
