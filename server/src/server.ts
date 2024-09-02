@@ -32,7 +32,6 @@ async function init() {
 			}
 			const controller = new JobController(token)
 			const response = await controller.getJobs(page, limit)
-			console.log(response)
 			ctx.type = "application/json"
 			ctx.body = response
 		})
