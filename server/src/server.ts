@@ -3,8 +3,11 @@ import Router from "koa-router"
 import bodyParser from "koa-bodyparser"
 import json from "koa-json"
 import cors from "koa-cors"
+import serve from "koa-static"
+import mount from "koa-mount"
 import "dotenv/config"
 import { JobController } from "./JobController"
+import path from "path"
 
 
 init()
@@ -47,10 +50,16 @@ async function init() {
 			.use(cors())
 			.use(bodyParser())
 			.use(json())
+			.use(mount("/public", serve(path.join(__dirname, '/public'))))
+			.use(mount("/assets", serve(path.join(__dirname, '/public', "/assets"))))
 			.use(router.routes())
 			.use(router.allowedMethods());
 
-		app.listen(3000, () => console.log("Koa started! listening on port 3000"))
+		app.listen(3000, () => {
+			console.log("Koa started! listening on port 3000")
+			console.log("Serving file of : ", path.join(__dirname, "/public"), "on : http://localhost:3000/public")
+		}
+		)
 	} catch (e) {
 		console.error("Fail to start server", e)
 	}
