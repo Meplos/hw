@@ -9,7 +9,7 @@ describe("JobController", () => {
 		fetchMock.reset()
 	})
 	it("return jobs ", async () => {
-		fetchMock.get(apiUrl + "ads/search?where=Bordeaux&page=1", {
+		fetchMock.get(apiUrl + "ads/search?where=Bordeaux&page=1&limit=10", {
 			data: {
 				ads: []
 			}
@@ -42,7 +42,7 @@ describe("JobController", () => {
 			},
 		]
 
-		fetchMock.get(apiUrl + "ads/search?where=Bordeaux&page=1", {
+		fetchMock.get(apiUrl + "ads/search?where=Bordeaux&page=1&limit=10", {
 			data: {
 				ads: mockedJobs
 			}
@@ -57,7 +57,7 @@ describe("JobController", () => {
 
 	it("return no job when receive 404", async () => {
 
-		fetchMock.get(apiUrl + "ads/search?where=Bordeaux&page=1", 404)
+		fetchMock.get(apiUrl + "ads/search?where=Bordeaux&page=1&limit=10", 404)
 
 		const controller = new JobController()
 		const response = await controller.getJobs()

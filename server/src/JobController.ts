@@ -14,13 +14,13 @@ export class JobController {
 		this._token = token
 
 	}
-	async getJobs(page: number = 1): Promise<JobListResponse> {
-		console.log("page", page)
+	async getJobs(page: number = 1, limit: number = 10): Promise<JobListResponse> {
 
 		try {
 			const params = new URLSearchParams({
 				where: "Bordeaux",
-				page: page.toString()
+				page: page.toString(),
+				limit: limit.toString()
 			})
 
 			const response = await fetch(`${process.env.API_URL}ads/search?${params.toString()}`, {
@@ -33,7 +33,6 @@ export class JobController {
 			})
 
 			const body = await response.json()
-			console.log(body)
 			return {
 				jobs: body.data.ads,
 				total: body.data.total

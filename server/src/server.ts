@@ -21,12 +21,17 @@ async function init() {
 
 		router.get("/jobs", async (ctx) => {
 			const pageQuery = ctx.request.query.page
+			const limitQuery = ctx.request.query.limit
 			let page = 1
+			let limit = 10
 			if (pageQuery) {
 				page = parseInt(pageQuery as string)
 			}
+			if (limitQuery) {
+				limit = parseInt(limitQuery as string)
+			}
 			const controller = new JobController(token)
-			const response = await controller.getJobs(page)
+			const response = await controller.getJobs(page, limit)
 			console.log(response)
 			ctx.type = "application/json"
 			ctx.body = response
