@@ -1,7 +1,7 @@
-import React from "react"
-import { render, act, screen } from "@testing-library/react"
-import { describe, expect, it, vi, } from "vitest"
-import App from "../src/App"
+import React from "react";
+import { render, act, screen } from "@testing-library/react";
+import { describe, expect, it, } from "vitest";
+import App from "../src/App";
 
 const mockdata = [
   {
@@ -30,35 +30,28 @@ const mockdata = [
     city: "Mérignac",
     description: "This job is the seconde of the list"
   },
-]
+];
 
 const provider = {
   find: async () => mockdata,
   getMaxPage: () => 1
-}
+};
+
 describe("App Test", () => {
 
   it("display the first item of the list when nothing is done", async () => {
-    const { getByTestId } = await act(async () => await render(<App provider={provider} />))
-    const detailComponent = screen.getByTestId("job-detail")
+    const { getByTestId } = await act(async () => await render(<App provider={provider} />));
+    const detailComponent = screen.getByTestId("job-detail");
 
-    expect(detailComponent).toBeInTheDocument()
-    expect(detailComponent.querySelector(".title")?.textContent).toBe(mockdata[0].title)
-    expect(detailComponent.querySelector(".salary")?.textContent).toBe(mockdata[0].salary)
-    expect(detailComponent.querySelector(".description")?.textContent).toBe(mockdata[0].description)
-    expect(detailComponent.querySelector(".city")?.textContent).toBe(mockdata[0].city)
-    expect(detailComponent.querySelector(".postalCode")?.textContent).toBe(mockdata[0].postalCode)
-    expect(detailComponent.querySelector(".sector")?.textContent).toBe(mockdata[0].sector)
-    expect(detailComponent.querySelector(".company")?.textContent).toBe(mockdata[0].company)
-    expect(detailComponent.querySelector(".salary")?.textContent).toBe(mockdata[0].salary)
-  })
+    expect(detailComponent).toBeInTheDocument();
+    expect(detailComponent.querySelector(".title")?.textContent).toBe(mockdata[0].title);
+    expect(detailComponent.querySelector(".salary")?.textContent).toBe(mockdata[0].salary);
+    expect(detailComponent.querySelector(".description")?.textContent).toBe(mockdata[0].description);
+    expect(detailComponent.querySelector(".city")?.textContent).toBe(mockdata[0].city);
+    expect(detailComponent.querySelector(".postalCode")?.textContent).toBe(mockdata[0].postalCode);
+    expect(detailComponent.querySelector(".sector")?.textContent).toBe(mockdata[0].sector);
+    expect(detailComponent.querySelector(".company")?.textContent).toBe(mockdata[0].company);
+    expect(detailComponent.querySelector(".salary")?.textContent).toBe(mockdata[0].salary);
+  });
 
-
-  //TODO: Click on second item and check second detail are display
-
-  //TODO: check click in link detail button to redirect user
-
-  //TODO: Persist state in localstorage and use it when app is mount
-
-
-})
+});

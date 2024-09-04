@@ -6,7 +6,7 @@ interface ChipProps {
 const Chip = ({ value, color }: ChipProps) => {
   return <div className={`relative grid select-none items-center whitespace-nowrap rounded-lg ${color} py-1.5 px-3 font-sans text-xs font-bold uppercase text-white`}>
     <span className="type">{value}</span>
-  </div>
-}
+  </div>;
+};
 
-export default Chip
+export default Chip;

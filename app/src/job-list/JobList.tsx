@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { Job } from "../model/Job"
-import JobCard from "./JobCard"
+import { useState } from "react";
+import { Job } from "../model/Job";
+import JobCard from "./JobCard";
 
 
 
@@ -11,13 +11,13 @@ interface JobListProps {
 }
 const JobList = ({ className, items, onJobSelectedCallback }: JobListProps) => {
 
-  const [selectedId, setSelectedId] = useState<string>()
+  const [selectedId, setSelectedId] = useState<string>();
 
 
   const onJobSelected = (job: Job) => {
-    setSelectedId(job.id)
-    onJobSelectedCallback?.(job)
-  }
+    setSelectedId(job.id);
+    onJobSelectedCallback?.(job);
+  };
 
   return <div className={`job-list flex flex-col gap-2 ${className ? className : ''}`}>
     {items.length <= 0 &&
@@ -25,10 +25,10 @@ const JobList = ({ className, items, onJobSelectedCallback }: JobListProps) => {
         <span className="font-medium">Aucun job n'est disponible actuelement.</span>
       </div>
     }
-    {items && items.map((job: Job) => (<JobCard job={job} key={job.id} className={`job-item cursor-pointer ${selectedId === job.id ? 'selected border-4' : ''}`} onClick={() => { onJobSelected(job) }} />
+    {items && items.map((job: Job) => (<JobCard job={job} key={job.id} className={`job-item cursor-pointer ${selectedId === job.id ? 'selected border-4' : ''}`} onClick={() => { onJobSelected(job); }} />
     ))}
-  </div>
-}
+  </div>;
+};
 
 
-export default JobList
+export default JobList;

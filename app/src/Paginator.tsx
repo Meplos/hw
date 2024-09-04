@@ -21,7 +21,7 @@ const Paginator = ({ current, max, onNext, onPrevious }: PaginatorProps) => {
       </svg>
       <span className="sr-only">Next Button</span>
     </button>
-  </div>
-}
+  </div>;
+};
 
-export default Paginator
+export default Paginator;

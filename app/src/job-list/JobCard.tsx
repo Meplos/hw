@@ -1,5 +1,5 @@
-import { Job } from "../model/Job"
-import Chip from "../common-components/Chip"
+import { Job } from "../model/Job";
+import Chip from "../common-components/Chip";
 
 interface JobCardProps {
   job: Job,
@@ -26,8 +26,8 @@ const JobCard = ({ job, className, onClick }: JobCardProps) => {
     <p className="mt-2 text-gray-500 dark:text-neutral-400">
       {job.salary}
     </p>
-  </div>
-}
+  </div>;
+};
 
 
-export default JobCard
+export default JobCard;
