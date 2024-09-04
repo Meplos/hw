@@ -3,8 +3,8 @@ import './App.css';
 import JobList from './job-list/JobList';
 import { Job } from './model/Job';
 import { JobProvider } from './job-list/JobProvider';
-import JobDetail from './JobDetail';
-import Paginator from './Paginator';
+import JobDetail from './job-details/JobDetail';
+import Paginator from './common-components/Paginator';
 import { useDebounce } from 'use-debounce';
 
 
