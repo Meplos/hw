@@ -35,6 +35,7 @@ export class JobProviderImpl implements JobProvider {
 	}
 
 	getMaxPage(): number {
-		return Math.round(this._total / this._pageSize)
+		return Math.ceil(this._total / this._pageSize)
+
 	}
 }

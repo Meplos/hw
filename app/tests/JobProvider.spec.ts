@@ -36,7 +36,19 @@ describe("JobProvider", () => {
     await provider.find()
 
 
-    expect(await provider.getMaxPage()).toBe(10)
+    expect(provider.getMaxPage()).toBe(10)
+  })
+  it("return 10 max page with no round total inf to half", async () => {
+
+    fetchMock.get("http://localhost:3000/jobs?page=1&size=10", {
+      jobs: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+      total: 92
+    })
+    const provider = new JobProviderImpl()
+    await provider.find()
+
+
+    expect(provider.getMaxPage()).toBe(10)
   })
 
 }) 
