@@ -40,7 +40,7 @@ const provider = {
 describe("App Test", () => {
 
   it("display the first item of the list when nothing is done", async () => {
-    const { getByTestId } = await act(async () => await render(<App provider={provider} />));
+    await act(async () => await render(<App provider={provider} />));
     const detailComponent = screen.getByTestId("job-detail");
 
     expect(detailComponent).toBeInTheDocument();

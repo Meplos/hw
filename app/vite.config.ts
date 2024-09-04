@@ -1,6 +1,6 @@
 /// <reference types="vite" />
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 
 /// <reference types="vite/client" />
 //
@@ -12,4 +12,4 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './tests/setup.js'
   }
-})
+});
