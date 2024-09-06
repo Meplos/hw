@@ -1,4 +1,4 @@
-import { Job } from "./model/Job";
+import { Job } from "../model/Job";
 import Parser from "html-react-parser";
 interface JobDetailProps {
   job: Job,
